@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, css } from 'lit';
 import { router, navigator, outlet } from 'lit-element-router';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../redux/store';
@@ -18,11 +18,43 @@ import '@material/mwc-icon';
 import '@material/mwc-list/mwc-list';
 import '@material/mwc-list/mwc-list-item';
 import '@material/mwc-snackbar';
+import '@pwabuilder/pwainstall';
 
 class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
   static get styles() {
     return [
-      Layouts
+      Layouts,
+      css`
+      :host {
+        --app-primary-color: #4285f4;
+        --app-secondary-color: black;
+        display: block;
+      }
+
+      mwc-drawer {
+        height: 100vh;
+      }
+
+      mwc-icon-button.menu[hidden] {
+        display: none;
+      }
+
+      .main-content {
+        padding-left: 20px;
+      }
+
+      .sublist {
+        padding-left: 20px;
+      }
+
+      .sublist[hidden] {
+        display: none;
+      }
+      pwa-install {
+        position: fixed;
+        bottom: 10px; right: 10px;
+      }
+      `
     ];
   }
 
@@ -30,34 +62,9 @@ class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
     // Anything that's related to rendering should be done in here.
     return html`
       <style>
-        :host {
-          --app-primary-color: #4285f4;
-          --app-secondary-color: black;
-          display: block;
-        }
-
-        mwc-drawer {
-          height: 100vh;
-        }
-
-        mwc-icon-button.menu[hidden] {
-          display: none;
-        }
-
-        .main-content {
-          padding-left: 20px;
-        }
-
-        .sublist {
-          padding-left: 20px;
-        }
-
-        .sublist[hidden] {
-          display: none;
-        }
-        mwc-top-app-bar {
-          --mdc-top-app-bar-width: ${this.desktop?'calc(100% - 256px)':'100%'};
-        }
+      mwc-top-app-bar {
+        --mdc-top-app-bar-width: ${this.desktop?'calc(100% - 256px)':'100%'};
+      }
       </style>
       <!-- Header -->
       <mwc-drawer hasHeader .type="${this.desktop ? '' : 'modal'}" ?open=${this.drawerState} @MDCDrawer:closed="${() => this.drawerState = !this.drawerState}">
@@ -100,6 +107,7 @@ class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
             <my-view404 route='view404'></my-view404>
           </div>
           <mwc-snackbar></mwc-snackbar>
+          <pwa-install></pwa-install>
         </div>
       </mwc-drawer>
     `;
