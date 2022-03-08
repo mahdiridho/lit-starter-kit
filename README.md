@@ -13,6 +13,13 @@ I adjust the rollup config from @open-wc to perform pwa builder best practice wh
 npm i
 ```
 
+## Run
+
+```
+npm run start
+npm run start:build
+```
+
 ## Build
 
 ```
