@@ -263,13 +263,13 @@ class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
 
     if (this.page == 'home') {
       store.dispatch(initMetadata({
-        title: this.title +' - '+ this.data.title,
+        title: this.title,
         image: './images/'+ this.data.img
       }));
     } else {
       store.dispatch(initMetadata({
-        title: this.title +' - '+ this.params.menu
-      }));
+        title: this.title
+      }));  
     }
   }
 
