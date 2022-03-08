@@ -1,0 +1,38 @@
+{
+  "name": "lit-starter-kit",
+  "version": "0.0.1",
+  "description": "A starting point for Lit based apps inspired by Polymer starter kit",
+  "author": "Mahdi Ridho",
+  "repository": "mahdiridho/polymer-starter-kit/tree/lit",
+  "scripts": {
+    "build": "rimraf build && rollup -c rollup.config.js",
+    "start:build": "npm run build && web-dev-server --root-dir build --app-index index.html --open --compatibility none",
+    "start": "web-dev-server --app-index index.html"
+  },
+  "dependencies": {
+    "@collaborne/lit-flexbox-literals": "^0.2.2",
+    "@material/mwc-drawer": "^0.25.3",
+    "@material/mwc-icon": "^0.25.3",
+    "@material/mwc-icon-button": "^0.25.3",
+    "@material/mwc-list": "^0.25.3",
+    "@material/mwc-menu": "^0.25.3",
+    "@material/mwc-snackbar": "^0.25.3",
+    "@material/mwc-top-app-bar": "canary",
+    "@pwabuilder/pwainstall": "^1.6.7",
+    "@pwabuilder/pwaupdate": "^0.2.0",
+    "lit": "^2.2.0",
+    "lit-element-router": "^2.0.3",
+    "pwa-helpers": "^0.9.1",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "^1.10.0",
+    "@web/dev-server": "^0.1.17",
+    "deepmerge": "^4.2.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.51.2",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-workbox": "^5.2.1"
+  }
+}
