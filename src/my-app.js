@@ -67,7 +67,7 @@ class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
       }
       </style>
       <!-- Header -->
-      <mwc-drawer hasHeader .type="${this.desktop ? '' : 'modal'}" ?open=${this.drawerState} @MDCDrawer:closed="${() => this.drawerState = !this.drawerState}">
+      <mwc-drawer hasHeader .type="${this.desktop ? '' : 'modal'}" ?open=${this.drawerState} @MDCDrawer:closed="${() => this.drawerState = false}">
         <span slot="title">Menu</span>
         <span slot="subtitle">Hi ${this.name}</span>
         <div>
@@ -261,6 +261,11 @@ class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
         break;
     }
 
+    if (this.page == "page" && !this.params.sub) {
+      this.drawerState = true
+    } else {
+      this.drawerState = false      
+    }
     if (this.page == 'home') {
       store.dispatch(initMetadata({
         title: this.title,
@@ -269,7 +274,7 @@ class MyApp extends connect(store)(router(navigator(outlet(LitElement)))) {
     } else {
       store.dispatch(initMetadata({
         title: this.title
-      }));  
+      }));
     }
   }
 
