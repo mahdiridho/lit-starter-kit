@@ -25,3 +25,10 @@ npm run start:build
 ```
 npm run build
 ```
+
+## Deployment
+If you want to deploy the webapp into AWS S3 bucket, just run this command :
+
+```
+./deploy.sh
+```
